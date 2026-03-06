@@ -7,8 +7,11 @@ import org.testng.annotations.Test;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = {"testinguiwebautomation.stepDefinitions", "testinguiwebautomation.hooks"},
-        plugin = {"pretty", "html:target/cucumber-reports.html"}
+        plugin = {
+                "pretty",
+                "html:target/cucumber-reports.html",
+                "json:target/cucumber.json" // File JSON ini penting untuk generator report
+        }
 )
-@Test
 public class TestRunner extends AbstractTestNGCucumberTests {
 }
