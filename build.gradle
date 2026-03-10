@@ -21,10 +21,9 @@ dependencies {
 }
 
 test {
-    useTestNG() {
-        // Baris ini memberitahu Gradle untuk mencari file testng.xml di root project
-        suites 'testng.xml'
-    }
-    // Agar Gradle tidak error jika proses scan class otomatis gagal
-    failOnNoDiscoveredTests = false
+    useTestNG() // Pastikan ini ada karena kamu pakai TestNG
+    testLogging.showStandardStreams = true
+
+    // Memaksa Gradle untuk selalu menjalankan test meskipun tidak ada perubahan kode
+    outputs.upToDateWhen { false }
 }

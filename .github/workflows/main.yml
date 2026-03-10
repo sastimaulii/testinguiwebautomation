@@ -28,7 +28,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Run All Automation Tests
-        run: ./gradlew clean test
+          run: ./gradlew test -Dcucumber.options="src/test/resources/features"
 
       - name: Upload Test Reports
         if: always()
