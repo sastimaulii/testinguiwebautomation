@@ -35,7 +35,7 @@ jobs:
       # 5. Jalankan Semua Pengujian (API & UI Web)
       # Perintah ini akan menjalankan Cucumber Runner dan pengujian API Rest Assured
       - name: Run All Automation Tests
-        run: ./gradlew test
+        run: ./gradlew clean test
 
       # 6. Unggah Laporan Pengujian (Cucumber & Gradle Report)
       # 'if: always()' memastikan laporan tetap diunggah meskipun ada test yang gagal
