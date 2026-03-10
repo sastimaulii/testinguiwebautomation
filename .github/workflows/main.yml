@@ -28,7 +28,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Run All Automation Tests
-          run: ./gradlew test -Dcucumber.options="src/test/resources/features"
+        run: ./gradlew clean test
 
       - name: Upload Test Reports
         if: always()
@@ -37,4 +37,5 @@ jobs:
           name: automation-test-reports
           path: |
             target/cucumber-reports.html
+            target/cucumber.json
             build/reports/tests/test/
