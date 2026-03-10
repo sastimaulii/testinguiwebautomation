@@ -1,6 +1,5 @@
 name: Automation Testing Pipeline (API & UI Web)
 
-# Trigger: Berjalan saat ada push atau pull request ke branch main
 on:
   push:
     branches: [ main ]
@@ -12,11 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Ambil kode terbaru dari repositori
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # 2. Setup Java Environment (Sesuaikan dengan versi proyek Anda)
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -24,21 +21,15 @@ jobs:
           distribution: 'temurin'
           cache: 'gradle'
 
-      # 3. Setup Chrome untuk UI Testing (Penting untuk Selenium Headless)
       - name: Setup Chrome for UI Testing
         uses: browser-actions/setup-chrome@latest
 
-      # 4. Berikan izin eksekusi pada Gradle Wrapper
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      # 5. Jalankan Semua Pengujian (API & UI Web)
-      # Perintah ini akan menjalankan Cucumber Runner dan pengujian API Rest Assured
       - name: Run All Automation Tests
         run: ./gradlew clean test
 
-      # 6. Unggah Laporan Pengujian (Cucumber & Gradle Report)
-      # 'if: always()' memastikan laporan tetap diunggah meskipun ada test yang gagal
       - name: Upload Test Reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -46,6 +37,4 @@ jobs:
           name: automation-test-reports
           path: |
             target/cucumber-reports.html
-            target/cucumber.json
             build/reports/tests/test/
-          retention-days: 7
