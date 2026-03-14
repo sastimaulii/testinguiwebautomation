@@ -11,11 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Ambil kode terbaru dari repositori
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # 2. Setup Java Environment
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -23,21 +21,15 @@ jobs:
           distribution: 'temurin'
           cache: 'gradle'
 
-      # 3. Setup Chrome untuk UI Testing (Penting untuk Selenium Headless)
       - name: Setup Chrome for UI Testing
         uses: browser-actions/setup-chrome@latest
 
-      # 4. Berikan izin eksekusi pada Gradle Wrapper
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      # 5. Jalankan Pengujian dengan Perintah Spesifik
-      # --rerun-tasks memaksa Gradle menjalankan ulang semua test
-      # -Dcucumber.options mengarahkan langsung ke file feature Anda
       - name: Run All Automation Tests
-        run: ./gradlew clean test --rerun-tasks -Dcucumber.options="src/test/resources/features"
+        run: ./gradlew clean test --info --rerun-tasks
 
-      # 6. Unggah Laporan (Artifacts)
       - name: Upload Test Reports
         if: always()
         uses: actions/upload-artifact@v4

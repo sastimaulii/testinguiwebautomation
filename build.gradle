@@ -21,9 +21,11 @@ dependencies {
 }
 
 test {
-    useTestNG() // Pastikan ini ada karena kamu pakai TestNG
-    testLogging.showStandardStreams = true
+    useTestNG() // Paling penting!
 
-    // Memaksa Gradle untuk selalu menjalankan test meskipun tidak ada perubahan kode
-    outputs.upToDateWhen { false }
+    // Menampilkan log agar kita bisa melihat progress test di GitHub
+    testLogging {
+        events "passed", "skipped", "failed"
+        showStandardStreams = true
+    }
 }
