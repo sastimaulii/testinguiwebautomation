@@ -21,9 +21,12 @@ dependencies {
 }
 
 test {
-    useTestNG() // Paling penting!
+    // Memberitahu Gradle untuk menggunakan TestNG
+    useTestNG()
 
-    // Menampilkan log agar kita bisa melihat progress test di GitHub
+    // Memastikan Gradle menjalankan class TestRunner kamu
+    include '**/TestRunner.class'
+
     testLogging {
         events "passed", "skipped", "failed"
         showStandardStreams = true
