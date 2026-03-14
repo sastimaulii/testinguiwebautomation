@@ -21,14 +21,15 @@ dependencies {
 }
 
 test {
-    // Memberitahu Gradle untuk menggunakan TestNG
     useTestNG()
 
-    // Memastikan Gradle menjalankan class TestRunner kamu
-    include '**/TestRunner.class'
+    // Memaksa Gradle mencari di seluruh folder java untuk menemukan Runner
+    scanForTestClasses = false
+    include "**/*Runner.class"
 
     testLogging {
         events "passed", "skipped", "failed"
         showStandardStreams = true
+        exceptionFormat = "full"
     }
 }

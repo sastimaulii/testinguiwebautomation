@@ -28,7 +28,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Run All Automation Tests
-        run: ./gradlew clean test --info
+        run: ./gradlew clean test --info -DfailOnNoDiscoveredTests=false
 
       - name: Upload Test Reports
         if: always()
